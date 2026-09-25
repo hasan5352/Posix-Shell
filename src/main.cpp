@@ -4,13 +4,16 @@
 using namespace std;
 
 int main() {
-  // Flush after every std::cout / std:cerr. Else, without unitbuf, c++ buffers output in memory before printing
-  cout << unitbuf;
-  cerr << unitbuf;
+    // Flush after every std::cout / std:cerr. Else, without unitbuf, c++ buffers output in memory before printing
+    cout << unitbuf;
+    cerr << unitbuf;
 
-  cout << "$ ";
+    while (true) {
+        cout << "$ ";
+        string userCommand;
+        cin >> userCommand;
+        if (userCommand == "q" || userCommand == "Q") break;
+        cout << userCommand << ": command not found" << endl;
+    }
 
-  string userCommand;
-  cin >> userCommand;
-  cout << userCommand << ": command not found";
 }
