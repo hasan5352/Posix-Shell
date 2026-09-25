@@ -12,7 +12,7 @@ int main() {
         cout << "$ ";
         string userCommand;
         cin >> userCommand;
-        if (userCommand == "q" || userCommand == "Q") break;
+        if (userCommand == "exit") break;
         cout << userCommand << ": command not found" << endl;
     }
 
