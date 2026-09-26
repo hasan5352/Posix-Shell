@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "MyInputStream.hpp"
 
 using namespace std;
 
@@ -8,12 +9,23 @@ int main() {
     cout << unitbuf;
     cerr << unitbuf;
 
+    MyInputStream *myIn = new MyInputStream(STDIN_FILENO);
+
     while (true) {
         cout << "$ ";
-        string userCommand;
-        cin >> userCommand;
+        
+        char last_char;
+        string userCommand = myIn->first_word(last_char);
+        
         if (userCommand == "exit") break;
-        cout << userCommand << ": command not found" << endl;
+
+        if (userCommand == "echo") {
+            if (last_char != '\n') cout << myIn->getline() << endl;
+        } else {
+            if (userCommand != "") cout << userCommand << ": command not found" << endl;
+            if (last_char != '\n') myIn->flush();           // after \n there is nothing to flush, so read() will just block shell
+        }
     }
 
+    return 0;
 }
