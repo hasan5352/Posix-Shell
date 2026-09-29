@@ -29,7 +29,7 @@ int main() {
             if (last_char == '\n') continue;
             string nxt = myIn->getline();
 
-            if (nxt == "type" || nxt == "exit" || nxt == "echo") cout << endl << nxt << "is a shell builtin";
+            if (nxt == "type" || nxt == "exit" || nxt == "echo") cout << endl << nxt << " is a shell builtin";
             else cout << endl << nxt << ": not found";
 
         } else if (userCommand == "echo") {
