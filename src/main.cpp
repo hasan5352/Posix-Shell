@@ -1,6 +1,5 @@
 #include <iostream>
-#include <string>
-#include "MyInputStream.hpp"
+#include "MyInputStream/MyInputStream.hpp"
 
 using namespace std;
 
@@ -9,21 +8,35 @@ int main() {
     cout << unitbuf;
     cerr << unitbuf;
 
-    MyInputStream *myIn = new MyInputStream(STDIN_FILENO);
+    MyInputStream *myIn = new MyInputStream();
 
     while (true) {
-        cout << "$ ";
+        cout << endl << "$ ";
         
+        myIn->clearBuffer();
+        myIn->fillBuffer();
+
+
         char last_char;
         string userCommand = myIn->first_word(last_char);
         
-        if (userCommand == "exit") break;
+        if (userCommand == "exit") {
+            cout << endl;
+            break;
+        }
 
-        if (userCommand == "echo") {
-            if (last_char != '\n') cout << myIn->getline() << endl;
+        if (userCommand == "type") {
+            if (last_char == '\n') continue;
+            string nxt = myIn->getline();
+
+            if (nxt == "type" || nxt == "exit" || nxt == "echo") cout << endl << nxt << "is a shell builtin";
+            else cout << endl << nxt << ": not found";
+
+        } else if (userCommand == "echo") {
+            if (last_char != '\n') cout << endl << myIn->getline();
         } else {
-            if (userCommand != "") cout << userCommand << ": command not found" << endl;
-            if (last_char != '\n') myIn->flush();           // after \n there is nothing to flush, so read() will just block shell
+            if (userCommand != "") cout << endl << userCommand << ": command not found";
+            if (last_char != '\n') myIn->clearBuffer();
         }
     }
 

@@ -1,5 +1,6 @@
 {
     "code-runner.executorMap": {
-        "cpp": "cd $workspaceRoot && g++ -std=c++20 src/main.cpp -o bin/shell.exe && ./bin/shell.exe"
-    }
+        "cpp": "cd $workspaceRoot && cmake --build build && ./build/shell"    //add "cmake -S . -B build" after cd command if build folder not exists
+    },
+    "python-envs.defaultEnvManager": "ms-python.python:system"
 }

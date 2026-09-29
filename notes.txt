@@ -1,0 +1,7 @@
+- constexpr keyword can be applied before a func / variable so that their values can be computed at compile time
+- volatile keyword for a variable -> when its value can be changed by external hardware, other than CPU
+
+- const_cast<type_name> (expression): modify const/volatile properties
+- dynamic_cast<type_name> (expression): solve type at runtime
+- reinterpret_cast<type_name> (expression): tell compiler to trust the programmer in the new_type
+- static_cast<type_name> (expression): standard and very safe
