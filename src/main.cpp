@@ -11,7 +11,7 @@ int main() {
     MyInputStream *myIn = new MyInputStream();
 
     while (true) {
-        cout << endl;
+        // cout << endl;
         cout << "$ ";
         
         myIn->clearBuffer();
