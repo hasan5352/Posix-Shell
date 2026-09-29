@@ -30,13 +30,13 @@ int main() {
             if (last_char == '\n') continue;
             string nxt = myIn->getline();
 
-            if (nxt == "type" || nxt == "exit" || nxt == "echo") cout << endl << nxt << " is a shell builtin";
-            else cout << endl << nxt << ": not found";
+            if (nxt == "type" || nxt == "exit" || nxt == "echo") cout << endl << nxt << " is a shell builtin" << endl;
+            else cout << endl << nxt << ": not found" << endl;
 
         } else if (userCommand == "echo") {
-            if (last_char != '\n') cout << endl << myIn->getline();
+            if (last_char != '\n') cout << endl << myIn->getline() << endl;
         } else {
-            if (userCommand != "") cout << endl << userCommand << ": command not found";
+            if (userCommand != "") cout << endl << userCommand << ": command not found" << endl;
             if (last_char != '\n') myIn->clearBuffer();
         }
     }
